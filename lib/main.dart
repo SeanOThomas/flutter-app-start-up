@@ -1,23 +1,39 @@
+import 'package:drop_poet/common/model/user_model.dart';
+import 'package:drop_poet/common/services/auth_service.dart';
+import 'package:drop_poet/common/services/firestore_service.dart';
 import 'package:drop_poet/router.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Drop Poet',
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: Router.generateRoute,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return MultiProvider(
+      providers: [
+        Provider<AuthService>(
+          create: (_) => AuthService(),
+        ),
+        Provider<FirestoreService>(
+          create: (_) => FirestoreService(),
+        ),
+        ProxyProvider2<AuthService, FirestoreService, UserModel>(update: (context, auth, firestore, _) {
+          return UserModel(auth, firestore);
+        }),
+      ],
+      child: MaterialApp(
+        title: 'Drop Poet',
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: Router.generateRoute,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: MyHomePage(title: 'Drop Poet'),
       ),
-      home: MyHomePage(title: 'Drop Poet'),
     );
   }
 }
@@ -31,8 +47,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
   void _incrementCounter() {
     Navigator.pushNamed(context, addPoemRoute);
   }
@@ -43,25 +57,11 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
