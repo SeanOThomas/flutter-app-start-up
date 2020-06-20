@@ -1,7 +1,7 @@
-import 'package:drop_poet/common/data/user.dart';
 import 'package:drop_poet/common/logger.dart';
-import 'package:drop_poet/common/services/auth_service.dart';
-import 'package:drop_poet/common/services/firestore_service.dart';
+import 'package:drop_poet/services/auth_service.dart';
+import 'package:drop_poet/services/firestore_service.dart';
+import 'package:drop_poet/user/data/user.dart';
 
 class UserModel {
   static final _tag = "UserModel";

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:drop_poet/common/data/user.dart';
+import 'package:drop_poet/user/data/user.dart';
 
 class FirestoreService {
   static final _tag = "FirestoreService";

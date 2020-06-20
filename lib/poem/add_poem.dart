@@ -1,4 +1,4 @@
-import 'package:drop_poet/common/container_page.dart';
+import 'package:drop_poet/common/widget/container_page.dart';
 import 'package:drop_poet/poem/add_poem_field.dart';
 import 'package:drop_poet/poem/add_poem_view_model.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,7 @@ class _AddPoemPageState extends State<AddPoemPage> {
       child: Consumer<AddPoemViewModel>(
         builder: (context, model, _) => Scaffold(
             body: SingleChildScrollView(
-          child: ContainerPage(
+          child: DPContainerPage(
             child: Padding(
               padding: EdgeInsets.only(top: 40),
               child: Form(
