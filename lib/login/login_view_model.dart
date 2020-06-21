@@ -6,6 +6,11 @@ import 'package:drop_poet/user/model/user_model.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+const MESSAGE_WRONG_EMAIL = "Wrong email.";
+const MESSAGE_WRONG_PASSWORD = "Wrong password.";
+const MESSAGE_TOO_MANY_TRIES = "Try again later or update your password.";
+const MESSAGE_UNKNOWN_ERROR = "Oops, there was an error.";
+
 class LoginViewModel extends BaseViewModel {
   static final _tag = "LoginViewModel";
 
@@ -38,12 +43,12 @@ class LoginViewModel extends BaseViewModel {
 String _getDisplayError(String code) {
   switch(code) {
     case "ERROR_USER_NOT_FOUND":
-      return "Email not found";
+      return MESSAGE_WRONG_EMAIL;
     case "ERROR_WRONG_PASSWORD":
-      return "Incorrect password";
+      return MESSAGE_WRONG_PASSWORD;
     case "ERROR_TOO_MANY_REQUESTS":
-      return "Try again later or update your password.";
+      return MESSAGE_TOO_MANY_TRIES;
     default:
-      return "Oops, there was an error";
+      return MESSAGE_UNKNOWN_ERROR;
   }
 }
