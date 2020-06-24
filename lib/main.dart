@@ -1,5 +1,5 @@
+import 'package:drop_poet/navigation/navigation_root.dart';
 import 'package:drop_poet/router.dart';
-import 'package:drop_poet/search/search_page.dart';
 import 'package:drop_poet/services/auth_service.dart';
 import 'package:drop_poet/services/firestore_service.dart';
 import 'package:drop_poet/user/model/user_model.dart';
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: SearchPage(),
+        home: NavigationRoot(),
       ),
     );
   }
