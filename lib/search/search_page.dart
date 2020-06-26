@@ -13,7 +13,9 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     UserModel userModel = Provider.of<UserModel>(context);
     return ChangeNotifierProvider<SearchViewModel>(
-      create: (context) => SearchViewModel(),
+      create: (context) => SearchViewModel(
+          userModel
+      ),
       child: Consumer<SearchViewModel>(
         builder: (context, model, _) => Scaffold(
           floatingActionButton: FloatingActionButton(

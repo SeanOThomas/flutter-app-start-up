@@ -2,6 +2,7 @@ import 'package:drop_poet/common/logger.dart';
 import 'package:drop_poet/services/auth_service.dart';
 import 'package:drop_poet/services/firestore_service.dart';
 import 'package:drop_poet/user/data/user.dart';
+import 'package:geolocator/geolocator.dart';
 
 class UserModel {
   static final _tag = "UserModel";
@@ -12,6 +13,8 @@ class UserModel {
   bool isLoggedIn = false;
   String userId;
   User user;
+
+  Position currentLocation;
 
   UserModel(this.authService, this.firestoreService) {
     _fetchUserIfLoggedIn();
@@ -38,5 +41,6 @@ class UserModel {
     isLoggedIn = false;
     userId = null;
     user = null;
+    currentLocation = null;
   }
 }
